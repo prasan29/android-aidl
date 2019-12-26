@@ -3,6 +3,7 @@ package com.radio.aidlandroidjava.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class DataModel implements Parcelable {
@@ -21,6 +22,13 @@ public final class DataModel implements Parcelable {
     private int mAge;
     private List<String> mList;
     private boolean mIsAlive;
+
+    public DataModel(String name, int age, List<String> list, boolean isAlive) {
+        mName = name;
+        mAge = age;
+        mList = new ArrayList<>(list);
+        mIsAlive = isAlive;
+    }
 
     private DataModel(Parcel in) {
         mName = in.readString();
@@ -76,5 +84,15 @@ public final class DataModel implements Parcelable {
         } else {
             parcel.writeByte((byte) 0);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "DataModel{" +
+                "mName='" + mName + '\'' +
+                ", mAge=" + mAge +
+                ", mList=" + mList +
+                ", mIsAlive=" + mIsAlive +
+                '}';
     }
 }
